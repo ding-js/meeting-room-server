@@ -8,9 +8,9 @@ class RoomController extends Controller {
   }
 
   async create() {
-    const { name } = this.ctx.request.body;
+    const { name, location = 1 } = this.ctx.request.body;
 
-    this.ctx.body = await this.service.room.create(name);
+    this.ctx.body = await this.service.room.create(name, location);
   }
 
   async update() {

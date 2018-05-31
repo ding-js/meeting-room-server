@@ -1,12 +1,12 @@
 'use strict';
 
 const Service = require('egg').Service;
-class RoomService extends Service {
+class LocationService extends Service {
   async find(id) {
-    const room = await this.ctx.model.Room.findById(id);
+    const loc = await this.ctx.model.Room.findById(id);
 
-    if (room) {
-      return room;
+    if (loc) {
+      return loc;
     }
 
     return Promise.reject({
@@ -18,14 +18,14 @@ class RoomService extends Service {
     return this.ctx.model.Room.findAll();
   }
 
-  async create(name, location) {
+  async create(name) {
     if (!name || typeof name !== 'string') {
       return Promise.reject({
         message: 'Invalid name'
       });
     }
 
-    return this.ctx.model.Room.create({ name, location });
+    return this.ctx.model.Room.create({ name });
   }
 
   async update(id, name) {
@@ -41,4 +41,4 @@ class RoomService extends Service {
   }
 }
 
-module.exports = RoomService;
+module.exports = LocationService;
