@@ -9,7 +9,7 @@ module.exports = app => {
     location: {
       type: INTEGER,
       references: {
-        model: 'location',
+        model: 'locations',
         key: 'id'
       },
       onUpdate: 'cascade',

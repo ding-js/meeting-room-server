@@ -8,16 +8,13 @@ class RoomController extends Controller {
   }
 
   async create() {
-    const { name, location = 1 } = this.ctx.request.body;
-
-    this.ctx.body = await this.service.room.create(name, location);
+    this.ctx.body = await this.service.room.create(this.ctx.request.body);
   }
 
   async update() {
-    const { name } = this.ctx.request.body;
     const { id } = this.ctx.params;
 
-    this.ctx.body = await this.service.room.update(id, name);
+    this.ctx.body = await this.service.room.update(id, this.ctx.request.body);
   }
 
   async destroy() {

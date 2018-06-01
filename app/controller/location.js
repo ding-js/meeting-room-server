@@ -8,25 +8,20 @@ class LocationController extends Controller {
   }
 
   async create() {
-    const { name } = this.ctx.request.body;
-
-    this.ctx.body = await this.service.location.create(name);
+    this.ctx.body = await this.service.location.create(this.ctx.request.body);
   }
 
   async update() {
-    const { name } = this.ctx.request.body;
     const { id } = this.ctx.params;
 
-    this.ctx.body = await this.service.location.update(id, name);
+    this.ctx.body = await this.service.location.update(id, this.ctx.request.body);
   }
 
   async destroy() {
     const { id } = this.ctx.params;
 
-    if (Number(id) === 1) {
-      return Promise.reject({
-        message: 'Default location can not be deleted'
-      });
+    if ((await this.service.location.findAll().length) <= 1) {
+      return Promise.reject(new Error('Can not delete all location'));
     }
 
     this.ctx.body = await this.service.location.delete(id);

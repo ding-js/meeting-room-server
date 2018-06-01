@@ -6,7 +6,9 @@
 module.exports = app => {
   const { router } = app;
 
-  router.resources('room', '/api/room', app.controller.room);
+  router.resources('rooms', '/api/rooms', app.controller.room);
 
-  router.resources('location', '/api/location', app.controller.location);
+  router.resources('locations', '/api/locations', app.controller.location);
+
+  router.resources('orders', '/api/orders', app.controller.order);
 };

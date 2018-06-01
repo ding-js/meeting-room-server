@@ -9,26 +9,22 @@ class RoomService extends Service {
       return room;
     }
 
-    return Promise.reject({
-      message: 'Invalid id'
-    });
+    return Promise.reject(new Error('Invalid id'));
   }
 
   async findAll() {
     return this.ctx.model.Room.findAll();
   }
 
-  async create(name, location) {
+  async create({ name, location }) {
     if (!name || typeof name !== 'string') {
-      return Promise.reject({
-        message: 'Invalid name'
-      });
+      return Promise.reject(new Error('Invalid name'));
     }
 
     return this.ctx.model.Room.create({ name, location });
   }
 
-  async update(id, name) {
+  async update(id, { name }) {
     const room = await this.find(id);
 
     return room.update({ name });

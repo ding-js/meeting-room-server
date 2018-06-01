@@ -3,41 +3,41 @@
 const Service = require('egg').Service;
 class LocationService extends Service {
   async find(id) {
-    const loc = await this.ctx.model.Room.findById(id);
+    const loc = await this.ctx.model.Location.findById(id);
 
     if (loc) {
       return loc;
     }
 
-    return Promise.reject({
-      message: 'Invalid id'
-    });
+    return Promise.reject(new Error('Invalid id'));
   }
 
   async findAll() {
-    return this.ctx.model.Room.findAll();
+    return this.ctx.model.Location.findAll();
   }
 
-  async create(name) {
+  async create({ name, startTime = 540, endTime = 1080 }) {
     if (!name || typeof name !== 'string') {
-      return Promise.reject({
-        message: 'Invalid name'
-      });
+      return Promise.reject(new Error('Invalid name'));
     }
 
-    return this.ctx.model.Room.create({ name });
+    return this.ctx.model.Location.create({
+      name,
+      start_time: startTime,
+      end_time: endTime
+    });
   }
 
-  async update(id, name) {
-    const room = await this.find(id);
+  async update(id, { name }) {
+    const loc = await this.find(id);
 
-    return room.update({ name });
+    return loc.update({ name });
   }
 
   async delete(id) {
-    const room = await this.find(id);
+    const loc = await this.find(id);
 
-    return room.destroy();
+    return loc.destroy();
   }
 }
 
