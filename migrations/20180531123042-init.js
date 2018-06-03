@@ -59,11 +59,20 @@ module.exports = {
       created_at: DATE,
       updated_at: DATE
     });
+
+    await db.createTable('users', {
+      id: { type: INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+      username: { type: STRING.BINARY, allowNull: false, unique: true },
+      password: { type: STRING, allowNull: false },
+      created_at: DATE,
+      updated_at: DATE
+    });
   },
 
   async down(db) {
     await db.dropTable('orders');
     await db.dropTable('rooms');
     await db.dropTable('locations');
+    await db.dropTable('users');
   }
 };

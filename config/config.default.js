@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = appInfo => {
+module.exports = () => {
   const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1527681615630_3333';
+  config.keys = 'IMc0D~WAF;u~hb&4W5_N';
 
   // add your config here
   config.middleware = [];

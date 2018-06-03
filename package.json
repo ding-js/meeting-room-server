@@ -4,10 +4,14 @@
   "description": "",
   "private": true,
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
     "egg": "^2.2.1",
+    "egg-passport": "^2.0.1",
     "egg-scripts": "^2.5.0",
     "egg-sequelize": "^3.1.4",
-    "mysql2": "^1.5.3"
+    "moment": "^2.22.2",
+    "mysql2": "^1.5.3",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

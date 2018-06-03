@@ -28,14 +28,24 @@ class LocationService extends Service {
     });
   }
 
-  async update(id, { name }) {
+  async update(id, { name, startTime, endTime }) {
     const loc = await this.find(id);
 
-    return loc.update({ name });
+    return loc.update({
+      name,
+      start_time: startTime,
+      end_time: endTime
+    });
   }
 
   async delete(id) {
     const loc = await this.find(id);
+
+    const locations = await this.service.location.findAll();
+
+    if (locations.length <= 1) {
+      return Promise.reject(new Error('Can not delete all location'));
+    }
 
     return loc.destroy();
   }

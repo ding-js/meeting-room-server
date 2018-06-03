@@ -26,12 +26,13 @@ class OrderService extends Service {
     return this.ctx.model.Order.findAll(options);
   }
 
-  async create({ scheduledDate, startTime, endTime, orderedBy }) {
+  async create({ room, scheduledDate, startTime, endTime, orderedBy }) {
     if (!scheduledDate || !startTime || !endTime || !orderedBy) {
       return Promise.reject(new Error('Missing arguments'));
     }
 
     return this.ctx.model.Order.create({
+      room,
       scheduled_date: scheduledDate,
       start_time: startTime,
       end_time: endTime,
