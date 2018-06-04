@@ -12,10 +12,16 @@ module.exports = () => {
   config.sequelize = {
     dialect: 'mysql',
     database: 'meeting_room',
-    host: '127.0.0.1',
+    host: 'database',
     port: '3306',
     username: 'root',
     password: 'root'
+  };
+
+  config.security = {
+    csrf: {
+      ignoreJSON: true
+    }
   };
 
   return config;
