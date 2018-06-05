@@ -61,6 +61,7 @@ class UserService extends Service {
     }
 
     if (user.password === encrypt(password)) {
+      this.ctx.rotateCsrfSecret();
       return user;
     }
 

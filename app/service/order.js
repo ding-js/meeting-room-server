@@ -35,7 +35,7 @@ class OrderService extends Service {
 
     const loc = await this.service.location.find(r.location);
 
-    if (startTime > loc.start_time || endTime < loc.end_time) {
+    if (startTime < loc.start_time || endTime > loc.end_time) {
       return Promise.reject(new Error('Invalid time'));
     }
 

@@ -5,11 +5,8 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
   checkAuth() {
     if (!this.ctx.isAuthenticated()) {
-      this.ctx.status = 401;
-      return false;
+      this.ctx.throw(401);
     }
-
-    return true;
   }
 
   async logout() {
@@ -17,33 +14,25 @@ class UserController extends Controller {
   }
 
   async currentUser() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     this.ctx.body = this.ctx.user;
   }
 
   async index() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     this.ctx.body = await this.service.user.findAll();
   }
 
   async create() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     this.ctx.body = await this.service.user.create(this.ctx.request.body);
   }
 
   async update() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     const { id } = this.ctx.params;
 
@@ -51,9 +40,7 @@ class UserController extends Controller {
   }
 
   async destroy() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     const { id } = this.ctx.params;
 

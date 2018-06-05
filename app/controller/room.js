@@ -5,11 +5,8 @@ const Controller = require('egg').Controller;
 class RoomController extends Controller {
   checkAuth() {
     if (!this.ctx.isAuthenticated()) {
-      this.ctx.status = 401;
-      return false;
+      this.ctx.throw(401);
     }
-
-    return true;
   }
 
   async index() {
@@ -17,27 +14,20 @@ class RoomController extends Controller {
   }
 
   async create() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     this.ctx.body = await this.service.room.create(this.ctx.request.body);
   }
 
   async update() {
-    if (!this.checkAuth()) {
-      return;
-    }
-
+    this.checkAuth();
     const { id } = this.ctx.params;
 
     this.ctx.body = await this.service.room.update(id, this.ctx.request.body);
   }
 
   async destroy() {
-    if (!this.checkAuth()) {
-      return;
-    }
+    this.checkAuth();
 
     const { id } = this.ctx.params;
 

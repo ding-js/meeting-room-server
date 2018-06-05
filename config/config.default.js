@@ -18,11 +18,5 @@ module.exports = () => {
     password: 'root'
   };
 
-  config.security = {
-    csrf: {
-      ignoreJSON: true
-    }
-  };
-
   return config;
 };
