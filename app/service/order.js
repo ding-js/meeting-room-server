@@ -50,8 +50,8 @@ class OrderService extends Service {
       if (
         orders.some(order => {
           return (
-            (startTime > order.start_time && startTime <= order.end_time) ||
-            (endTime > order.start_time && endTime <= order.end_time) ||
+            (startTime > order.start_time && startTime < order.end_time) ||
+            (endTime > order.start_time && endTime < order.end_time) ||
             (startTime === order.start_time && endTime === order.end_time)
           );
         })

@@ -42,8 +42,7 @@
     "migrate:new": "egg-sequelize migration:create",
     "migrate:up": "egg-sequelize db:migrate",
     "migrate:down": "egg-sequelize db:migrate:undo",
-    "db":
-      "docker container rm mysql -f && docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=meeting_room -p 3306:3306 mysql:5"
+    "db": "docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=meeting_room -p 3306:3306 -v C:/data/meeting-room:/var/lib/mysql mysql:5"
   },
   "ci": {
     "version": "8"
